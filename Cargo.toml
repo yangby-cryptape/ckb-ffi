@@ -1,0 +1,23 @@
+[package]
+name = "ckb-ffi"
+version = "0.1.0"
+authors = ["Boyu Yang <yangby@cryptape.com>"]
+edition = "2018"
+description = "Rust bindings for molecule."
+homepage = "https://github.com/yangby-cryptape/molecule"
+repository = "https://github.com/yangby-cryptape/molecule"
+keywords = ["ckb"]
+categories = ["development-tools::ffi"]
+license = "MIT"
+
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
+libc = "0.2"
+serde_json = "1.0"
+ckb-types = { git = "https://github.com/nervosnetwork/ckb.git", rev = "9281e40" }
+ckb-jsonrpc-types = { git = "https://github.com/nervosnetwork/ckb.git", rev = "9281e40" }
+
+[badges]
+maintenance = { status = "passively-maintained" }
