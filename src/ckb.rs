@@ -124,7 +124,7 @@ pub unsafe extern "C" fn ckb_block_insert_transaction(
 pub unsafe extern "C" fn ckb_block_set_nonce(
     mut output: &mut utils::Buffer,
     input: *const utils::Buffer,
-    nonce: u64,
+    nonce: u128,
 ) -> i32 {
     let mut retcode = 0;
     let slice = utils::buffer_to_slice(input);

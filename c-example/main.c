@@ -25,7 +25,15 @@ int main (int argc, char *argv[])
     {
         buffer_t hash_buf;
 
-        char tx_json[] ="{\"version\":\"0x0\",\"cell_deps\":[],\"header_deps\":[],\"inputs\":[],\"outputs\":[],\"witnesses\":[],\"outputs_data\":[]}";
+        char tx_json[] ="{\
+            \"version\": \"0x0\",\
+            \"cell_deps\": [],\
+            \"header_deps\": [],\
+            \"inputs\": [],\
+            \"outputs\": [],\
+            \"witnesses\": [],\
+            \"outputs_data\": []\
+        }";
         if (ckb_load_transaction(&tx_buf, tx_json) != 0) {
             panic("    Error: failed to load a transaction from json string.");
         } else {
@@ -53,7 +61,24 @@ int main (int argc, char *argv[])
         buffer_t new_block_buf;
         buffer_t hash_buf;
 
-        char block_json[] = "{\"header\":{\"version\":\"0x0\",\"parent_hash\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"timestamp\":\"0x0\",\"number\":\"0x0\",\"epoch\":\"0x0\",\"transactions_root\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"witnesses_root\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"proposals_hash\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"difficulty\":\"0x0\",\"uncles_hash\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"uncles_count\":\"0x0\",\"dao\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"nonce\":\"0x0\"},\"uncles\":[],\"transactions\":[],\"proposals\":[]}";
+        char block_json[] = "{\
+            \"header\": {\
+                \"version\": \"0x0\",\
+                \"parent_hash\": \"0x0000000000000000000000000000000000000000000000000000000000000000\",\
+                \"timestamp\": \"0x0\",\
+                \"number\": \"0x0\",\
+                \"epoch\": \"0x0\",\
+                \"transactions_root\": \"0x0000000000000000000000000000000000000000000000000000000000000000\",\
+                \"proposals_hash\": \"0x0000000000000000000000000000000000000000000000000000000000000000\",\
+                \"compact_target\": \"0x0\",\
+                \"uncles_hash\": \"0x0000000000000000000000000000000000000000000000000000000000000000\",\
+                \"dao\": \"0x0000000000000000000000000000000000000000000000000000000000000000\",\
+                \"nonce\": \"0x0\"\
+            },\
+            \"uncles\": [],\
+            \"transactions\": [],\
+            \"proposals\": []\
+        }";
         if (ckb_load_block(&block_buf, block_json) != 0) {
             panic("    Error: failed to load a block from json string.");
         } else {
@@ -75,7 +100,35 @@ int main (int argc, char *argv[])
         buffer_free(block_with_tx_buf);
         buffer_free(new_block_buf);
 
-        char template_json[] = "{\"version\":\"0x0\",\"difficulty\":\"0x0\",\"current_time\":\"0x0\",\"number\":\"0x0\",\"epoch\":\"0x0\",\"parent_hash\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"cycles_limit\":\"0x0\",\"bytes_limit\":\"0x0\",\"uncles_count_limit\":\"0x0\",\"uncles\":[],\"transactions\":[],\"proposals\":[],\"cellbase\":{\"hash\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"cycles\":null,\"data\":{\"version\":\"0x0\",\"cell_deps\":[],\"header_deps\":[],\"inputs\":[],\"outputs\":[],\"witnesses\":[],\"outputs_data\":[]}},\"work_id\":\"0x0\",\"dao\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"}";
+        char template_json[] = "{\
+            \"version\": \"0x0\",\
+            \"compact_target\": \"0x0\",\
+            \"current_time\": \"0x0\",\
+            \"number\": \"0x0\",\
+            \"epoch\": \"0x0\",\
+            \"parent_hash\": \"0x0000000000000000000000000000000000000000000000000000000000000000\",\
+            \"cycles_limit\": \"0x0\",\
+            \"bytes_limit\": \"0x0\",\
+            \"uncles_count_limit\": \"0x0\",\
+            \"uncles\": [],\
+            \"transactions\": [],\
+            \"proposals\": [],\
+            \"cellbase\": {\
+                \"hash\": \"0x0000000000000000000000000000000000000000000000000000000000000000\",\
+                \"cycles\": null,\
+                \"data\": {\
+                    \"version\": \"0x0\",\
+                    \"cell_deps\": [],\
+                    \"header_deps\": [],\
+                    \"inputs\": [],\
+                    \"outputs\": [],\
+                    \"witnesses\": [],\
+                    \"outputs_data\": []\
+                }\
+            },\
+            \"work_id\": \"0x0\",\
+            \"dao\": \"0x0000000000000000000000000000000000000000000000000000000000000000\"\
+        }";
         if (ckb_load_block_from_template(&block_buf, template_json) != 0) {
             panic("    Error: failed to load a block from block template json string.");
         } else {
